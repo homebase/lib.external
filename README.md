@@ -9,6 +9,7 @@ How to use:
 2. create a symlink to non versioned lib
 
 
+= Submodules = 
 When remote project is available through git - use submodules:
 
 
@@ -18,3 +19,5 @@ $ git submodule add USER@HOST:PROJEECT LOCATION
 INIT + UPDATE SUBMODULE
 $ git submodule init
 $ git submodule update
+
+= Never place non-opensource code here
