@@ -1,0 +1,148 @@
+<?
+$TPL->layout 	= 'pay';
+
+if(! @$i) {
+    go("my_account");
+}
+?>
+<form method="post" action="/profile/payment/a.proceed_payment" id="customer_data" onsubmit="$.ahm_form('#customer_data', ahm_options); return false;">
+
+<?
+#$ip='64.130.226.250';
+$ip=$_SERVER['REMOTE_ADDR'];
+
+$geo=GeoIP::city($ip);
+
+$country =Geo::id_country($geo['country']);
+$state   =Geo::_region_from_state($geo['state']);
+
+
+if($invoice['status']=='complete') {
+?>
+<h2>This invoice has been proceeded successfully!</h2>
+<div><a href="http://<?=$_SERVER['HTTP_HOST']?>/payment/my_account">Proceed</a></div>
+<?
+} else {
+?>
+
+<input type="hidden" name="i" value="<?=$i?>">
+
+<table class="rubber" cellpadding="0" cellspacing="0">
+  <tr class="bg30">
+    <th class="p10 al">Comfibook Invoice #<?=$i?> for <?=Me()->name?></th>
+    <th class="p10 ar">Amount: $<?=$invoice['amount']?></th>
+  </tr>
+  <tr>
+    <td class="at p10" width="50%" bgcolor="#F1F1FF" style='border-right: 2px solid; border-color: white'>
+    	<table class="rubber">
+    		<tr>
+    			<td colspan=2 class="am ac"><h1>Credit/Debit Card</h1>
+    		</td>
+    	</tr>
+    	<tr class="at">
+    		<td class="p5">
+    			<b>Card Number: </b>
+    		</td>
+    		<td>
+    			<input type="text" name="CardNumber" id="CardNumber" maxlength="20" size="18" value="">
+    		</td>
+    	</tr>
+    	<tr class="at">
+    		<td class="p5">
+    			<b>Expiration Month / Year: </b>
+    		</td>
+    		<td>
+				<?=Html::select('ExpMonth',array(''=>'select')+array('01'=>'01','02'=>'02','03'=>'03','04'=>'04','05'=>'05','06'=>'06','07'=>'07','08'=>'08','09'=>'09','10'=>'10','11'=>'11','12'=>'12'),'','class="amtF"');?>
+				<select name="ExpYear" class="atmF" id="ExpYear">
+				<option value="0">select</option>
+				<?
+				for($year=date('Y');$year<date('Y')+10;$year++) {
+				?>
+				<option value="<?=$year?>"><?=$year?></option>
+				<?
+				}
+				?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="p5" nowrap>
+				<b>Card Security Code: </b>
+			</td>
+			<td>
+				<input type="text" name="CSC" maxlength="3" size="5" value="" id="CSC"> <span class='ul' onclick="dyn('d_help',this,'csc','/payment');">What is this?</span>
+			</td>
+		</tr>
+		<tr><td colspan="2" class="ab" style="padding-top: 50px;"><div style="display: none;" class='mt20 mr10 error' id='p_error'></div><td></tr>
+	</table>
+
+	</td>
+    <td class="at p10" width=50% bgcolor="#f0ffe0" style='border-right: 2px solid; border-color: white'>
+    	<table width=100%>
+    		<tr>
+    			<td colspan=2 class="ac"><h1>Billing Information</h1>
+    		</td>
+    	</tr>
+    	<tr class="at">
+    		<td class="p5"><b>Card Holder Name: </b></td>
+ 				<td><input type="text" name="name" maxlength="30" id="name" size="30" value="<?=Me()->name?>"></td>
+		</tr>
+		<tr>
+			<td colspan=2 class="ac">&mdash; Address as shown on your statement &mdash;</td>
+		</tr>
+		<tr>
+ 			<td class="p5"><b>Country: </b></td>
+			<td><?=Html::select('country',array(''=>'SELECT COUNTRY')+Geo::country_list(),@$country,' id="country" onchange="check_country();"')?>
+		</tr>
+		<tr id="tr_us">
+ 			<td class="p5"><div><b>State: </b></div></td>
+ 			<td><div id=c_state class=visible><?=Html::select('state',array(''=>'SELECT STATE')+Geo::region_list(1),@$state,' id="state"')?>&nbsp;<b>Zip: </b>&nbsp;<input type="text" name="zip" maxlength="9" size="5" id="zip" value=""></div>
+ 			</td>
+		</tr>
+		<tr>
+			<td class="p5"><b>City: </b></td>
+ 			<td><input type="text" id="city" name="city" maxlength="25" size="30" value=""></td>
+		</tr>
+		<tr>
+ 			<td class="p5"><b>Street Address: </b></td>
+ 			<td><input type="text" id="address" name="address" maxlength="40" size="30" value=""></td>
+		</tr>
+		<tr>
+ 			<td class="ab p5"><b>Contact Phone: </b></td>
+			 <td><input type="text" id="phone" name="phone" maxlength=18 size=14 value=""></td>
+		</tr>
+	    <tr>
+	        <td colspan=2 class="ac pt10 f1">
+			    All your information remains confidential and is used only<br> for payment security and credit card transaction validation
+		    </td>
+	    </tr>
+    </table>
+</td>
+	</tr>
+
+
+	<tr>
+    <td class="ac p10" style="border-bottom: 1px solid rgb(224, 224, 224)" colspan="2">
+       <input type="submit" value="Check Out »" style="padding: 3px; width: 200px; font-weight: bold;"/>
+    </td>
+  </tr>
+</table>
+</form>
+<script>
+function check_country() {
+    f=e("customer_data");
+    if(f.country.value!=1 && f.country.value!=240)
+        $("#tr_us").hide();
+    else
+        $("#tr_us").show();
+}
+
+function enable_submit() {
+
+}
+
+check_country();
+</script>
+<?
+}
+?>

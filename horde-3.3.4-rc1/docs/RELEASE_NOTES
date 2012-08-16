@@ -1,0 +1,38 @@
+<?php
+/**
+ * Release focus. Possible values:
+ * 0 - N/A
+ * 1 - Initial freshmeat announcement
+ * 2 - Documentation
+ * 3 - Code cleanup
+ * 4 - Minor feature enhancements
+ * 5 - Major feature enhancements
+ * 6 - Minor bugfixes
+ * 7 - Major bugfixes
+ * 8 - Minor security fixes
+ * 9 - Major security fixes
+ */
+$this->notes['fm']['focus'] = 6;
+
+/* Mailing list release notes. */
+$this->notes['ml']['changes'] = <<<ML
+The Horde Team is pleased to announce the first release candidate of the Horde
+Application Framework version 3.3.4.
+
+The Horde Application Framework is a modular, general-purpose web application
+framework written in PHP.  It provides an extensive array of classes that are
+targeted at the common problems and tasks involved in developing modern web
+applications.
+
+The major changes compared to Horde version 3.3.3 are:
+    * Large variety of small bug fixes and improvements all over the place.
+ML;
+
+/* Freshmeat release notes, not more than 600 characters. */
+$this->notes['fm']['changes'] = <<<FM
+Bug fixes and improvements have been made all over the place.
+FM;
+
+$this->notes['name'] = 'Horde';
+$this->notes['fm']['project'] = 'horde';
+$this->notes['fm']['branch'] = 'Horde 3';
