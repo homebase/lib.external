@@ -1,0 +1,49 @@
+http://www.synthesis.ch/download.php?lang=e&lay=desk&bp=COLK&pv=WIN&entry=1
+Works with both Outlook & Outlook Express, 30 day trial, required registration on sute to download.
+
+Funambol clients download page: https://www.forge.funambol.org/download/
+Sources for Mozilla Client: https://mozilla-plugin.forge.funambol.org/source/browse/mozilla-plugin/
+Funambol forge: https://www.forge.funambol.org/servlets/ProjectList?type=Projects&pageNum=1&totalPages=2&setItemsPerPage=50&paginationButton=Submit&firstItemInPage=0&previousItemsPerPage=25
+
+
+Fumanbol client for Mozilla Thunderbird (Windows, Linux)
+========================================================
+To install Mozilla Thunderbird plugin.
+--------------------------------------
+1. In your web browser (Internet Explorer, Fire Fox ...) open the following location:
+https://addons.mozilla.org/en-US/thunderbird/addon/8616
+2. Click "Download now" to download Thunderbird plugin.
+3. At the download page Right-click the link below and choose "Save Link As..." to download and save the file to your hard disk.
+4. In Mozilla Thunderbird, open Add-ons from the Tools menu.
+5. Click the Install button, and locate/select the file you downloaded and click "OK".
+
+To configure Mozilla Thunderbird plugin.
+----------------------------------------
+1. Open Mozilla Thunderbird and select Funambol Mozilla Sync Client -> Tools -> Options
+2. Fill configuration fields (at "Account" tab of Funambol Client options interface):
+  Location: http://humanbook.ru/sync/public_html/index.php
+  Username: Your_Humanbook_Login_Email
+  Password: Your_Humanbook_Password
+3. Run contacts synchronization.
+
+
+Fumanbol client for MS Outlook (Windows)
+========================================
+To install MS Outlook plugin.
+-----------------------------
+1. Download plugin installation from  http://www.funambol.com/opensource/download_response.php?file_id=funambol-outlook-sync-client-7.2.1.exe
+2. Run installation and follow installation wizard steps.
+3. To run Funambol Outlook Sync Client do either:
+Start -> All Programs -> Funambol -> Outlook Sync Client -> Funambol Outlook Sync Client
+or
+run your MS Outlook and click Funambol Client button (at Outlook's toolbar)
+
+To configure Mozilla Thunderbird plugin.
+----------------------------------------
+1. Open MS Outllok and select Funambol Outlook Sync Client -> Tools -> Options
+2. Fill configuration fields (at "Account" tab of Funambol Client options interface):
+  Location: http://humanbook.ru/sync/public_html/index.php
+  Username: Your_Humanbook_Login_Email
+  Password: Your_Humanbook_Password
+3. Run contacts synchronization.
+

@@ -1,0 +1,87 @@
+<?
+$TPL->layout 	= 'home_2';
+$TPL->title 	= 'My registered phone numbers';
+
+?>
+<div class="hint">Dial from your registered phones without entering PIN! Every time You call from the registered phone, your number is recognized automatically after dialing the Access number. And You don't have to enter a hard-to-remember PIN!</div>
+
+<br /><br />
+<?
+
+$anis=HBDial_Ani::_get(id());
+
+if( $anis ) {
+?>
+<table cellspacing="0" cellpadding="0" class="summary rubber">
+<?
+foreach( $anis as $k=>$ani ) {
+?>
+    <tr id="tr_<?=$k?>" style="height: 35px;">
+        <td><span id="ani_<?=$k?>"><?=$ani?></span><span id="edit_<?=$k?>" style="display: none;"><input name="ani_<?=$k?>" value="<?=$ani?>" id="ani_val_<?=$k?>" /> <input type="button" value="Edit" class="submit" onClick="edit_ani(<?=$k?>,'<?=$ani?>')" /> <input type="button" value="Cancel" class="button" onClick="hide_edit_form('<?=$k?>')" /></span></td>
+        <td class="ac" width="22%"><a href="#" id="e_<?=$k?>" onClick="show_edit_form('<?=$k?>'); return false;">Edit</a></td>
+        <td class="ac" width="23%"><a class="ul delete"  id="d_<?=$k?>" href="#" onClick="delete_ani(<?=$k?>); return false;">Delete</a></td>    
+    </tr>
+<?
+}
+?>
+</table>
+<?
+}
+?>
+
+<div class="ac mt10" id="reg_button"><input type="button" value="Register another number" class="submit" onClick="show_add_form();" /></div>
+
+<div class="ac mt10" id="reg_form" style="display: none">
+<form method="post" action="/profile/payment/a.add_ani" id="add_ani" onsubmit="ahm_form('add_ani'); return false;">
+
+<input name="ani" id="ani" /> <input type="submit" value="Register" class="submit" /> <input type="button" value="Cancel" class="button" onClick="show_button();" />
+</form>
+</div>
+
+
+<script>
+
+function edit_ani(id,old_ani) {
+    var new_ani=$("#ani_val_"+id).val();
+    var p = {new_ani: new_ani, old_ani: old_ani, id: id};
+    ahm('/profile/payment/a.edit_ani',p);
+}
+
+function delete_ani(id) {
+    t=confirm('Are you sure?');
+    if(t==true) {
+        var ani=$("#ani_val_"+id).val();
+        var p = {ani: ani, id: id};
+        ahm('/profile/payment/a.delete_ani',p);
+    }
+}
+
+function show_edit_form(id) {
+    $("#edit_"+id).show();
+    $("#ani_"+id).hide();
+    $("#e_"+id).hide();
+    $("#d_"+id).hide();
+    $("#reg_button").hide();
+}
+
+function hide_edit_form(id) {
+    $("#edit_"+id).hide();
+    $("#ani_"+id).show();
+    $("#ani_"+id).show();
+    $("#e_"+id).show();
+    $("#d_"+id).show();
+    $("#reg_button").show();
+}
+
+function show_add_form() {
+    $("#reg_button").hide();
+    $("#reg_form").show();
+}
+
+function show_button() {
+    $("#reg_button").show();
+    $("#reg_form").hide();
+    $("#edit_form").hide();
+}
+
+</script>

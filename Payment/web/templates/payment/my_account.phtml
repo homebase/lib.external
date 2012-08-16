@@ -1,0 +1,67 @@
+<?
+$TPL->layout 	  = 'home_2';
+$TPL->title 	  = 'My account balance';
+$TPL->active_link = 'my_account';
+$TPL->no_title     = 1;
+$TPL->css         = 'communications.css';
+?>
+<form action="to_payment" method="post">
+
+<table class="rubber">
+<tr><td width="100%" class="at">
+    
+<dl class="mybalance">
+   <dt>My Balance <span>$<?=Me()->Fin->balance?></span></dt>
+   <dd></dd>
+</dl>
+
+<h3><br /><br />Add funds to my account</h3>
+
+<form>
+<?
+$amounts=array(3,5,10,20,50);
+foreach($amounts as $a) {
+?>
+<input type="submit" name="amount" value="$<?=$a?>" class="submit"/><?
+}
+?>
+</form>
+
+<?
+$pager=new Pager(20);
+$ts=Me()->Fin->get_recent_payments($pager);
+if( $ts ) {
+?>
+<br /><br />
+<h3>List of recent transactions</h3>
+<table cellspacing="0" cellpadding="0" class="summary">
+    <tbody>
+    <tr>
+        <th class="elastic">Invoice #</th>
+        <th width="45%">Amount</th>
+        <th width="45%">Date</th>
+    </tr>
+<?
+foreach( $ts as $k=>$t) {
+    $date=date("F d, Y g:i a",strtotime($t['created_on']));
+?>
+    <tr>
+        <td><?=$t['invoice_id']?></td>
+        <td class="ac">$<?=$t['amount']?></td>
+        <td class="ac"><?=$date?></td>    
+    </tr>
+<?
+}
+?>
+    </tbody>
+</table>
+<?
+include T('/inc/pager');
+}
+?>
+</td>
+<td class="at"><?/*<div class="slogan">This is your balance.<br/>
+Here you can see the list of all transactions.*/?></div>
+</td>
+</tr>
+</table>

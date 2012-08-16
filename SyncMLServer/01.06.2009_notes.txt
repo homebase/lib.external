@@ -1,0 +1,24 @@
+Info:
+/hb/web/www/sync/public_html/index.php - connection point
+http://humanbook.ru/sync/public_html/index.php
+
+/hb/web/www/sync/includes/SyncML.php
+line 43
+/*Humanbook contacts interface*/
+//require_once 'Ab_SyncMLApi.php'; - uncomment to use my dummy class instead of /lib/O/Ab/SyncML/Api.php
+With this inclusion syncML session works perfect.
+
+
+Use Funmbol client log viewer to see messages spit out to html output.
+
+Funambol clients download page: https://www.forge.funambol.org/download/
+Sources for Mozilla Client: https://mozilla-plugin.forge.funambol.org/source/browse/mozilla-plugin/
+Funambol forge: https://www.forge.funambol.org/servlets/ProjectList?type=Projects&pageNum=1&totalPages=2&setItemsPerPage=50&paginationButton=Submit&firstItemInPage=0&previousItemsPerPage=25
+
+
+
+Errors:
+fopen(/hb/web/www/sync/tmp//log.txt): failed to open stream: Permission denied
+Failed opening 'Ab/SyncML.php' for inclusion (include_path='/hb/web/www/sync/includes:/hb/lib.framework:/hb/lib:/hb/web/include')  /hb/lib.framework/utils/autoload.php
+Fatal error: Call to undefined method Log::error() in /hb/lib.framework/utils/error.php on line 10
+Undefined offset:  2  /hb/lib/O/Ab/SyncML/Api.php  21 (when login/password incorrect)
