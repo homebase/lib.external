@@ -1,0 +1,15 @@
+{
+    "name": "homebase/lib.external",
+    "description": "External Packages for homebase",
+    "authors": [
+        {
+            "name": "Sergey Porfiriev",
+            "email": "parf@comfi.com"
+        }
+    ],
+    "require": {
+       "silex/silex": ">=1.0.0-dev",
+       "twig/twig": "1.*",
+       "predis/service-provider": "dev-master"
+    }
+}
