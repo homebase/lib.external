@@ -10,6 +10,7 @@
     "require": {
        "silex/silex": ">=1.0.0-dev",
        "twig/twig": "1.*",
-       "predis/service-provider": "dev-master"
+       "predis/service-provider": "dev-master",
+       "leeoniya/dump-r": "dev-master"
     }
 }
