@@ -1,0 +1,1 @@
+/rd/etc/pma-prod.config.inc.php
