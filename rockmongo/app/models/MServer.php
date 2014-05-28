@@ -256,7 +256,7 @@ class MServer {
 		}
 		
 		// changing timeout to the new value
-		MongoCursor::$timeout = $this->_mongoTimeout;
+		$timeout = $this->_mongoTimeout;
 		
 		//auth by mongo
 		if ($this->_mongoAuth) {
