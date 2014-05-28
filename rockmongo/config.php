@@ -11,6 +11,8 @@ $MONGO["features"]["log_query"] = "off";//log queries
 $MONGO["features"]["theme"] = "default";//theme
 $MONGO["features"]["plugins"] = "on";//plugins
 
+
+
 /**
 * Configuration of MongoDB servers
 */
@@ -187,5 +189,6 @@ if ($_SERVER["HTTP_HOST"] != "admin.rd.dev") {
 
     );
 }
+
 
 ?>
