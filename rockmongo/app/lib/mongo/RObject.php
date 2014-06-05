@@ -210,7 +210,8 @@ class RObject extends RModel implements ArrayAccess {
 		$bool = true;
 		if ($this->_id) {//if exists
 			if (!empty($this->_operations)) {
-				$bool = $this->_collection->update(array( "_id" => $this->_id ), $this->_operations, array(  "upsert" => false, "multiple" => false, "safe" => true ));
+				#mike $bool = $this->_collection->update(array( "_id" => $this->_id ), $this->_operations, array(  "upsert" => false, "multiple" => false, "safe" => true ));
+				$bool = $this->_collection->update(array( "_id" => $this->_id ), $this->_operations, array(  "upsert" => false, "multiple" => false, "w" => 1 ));
 				if ($refresh) {
 					$bool = $this->refresh();
 				}

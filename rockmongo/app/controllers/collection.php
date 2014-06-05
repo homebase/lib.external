@@ -755,7 +755,8 @@ window.parent.frames["left"].location.reload();
 				}
 			}
 			$options["background"] = 1;
-			$options["safe"] = 1;
+			#mike $options["safe"] = 1;
+            $options["w"] = 1;
 			
 			//name
 			$name = trim(xn("name"));

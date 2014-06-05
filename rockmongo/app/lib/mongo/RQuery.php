@@ -501,7 +501,8 @@ class RQuery {
 	 * @return boolean
 	 */
 	function insert(array $attrs, $safe = false) {
-		$bool = $this->_collection->insert($attrs, array( "safe" => $safe ));
+		#mike $bool = $this->_collection->insert($attrs, array( "safe" => $safe ));
+		$bool = $this->_collection->insert($attrs, array( "w" => (int)$safe ));
 		if ($bool) {
 			import("@.RMongo");
 			if ($attrs["_id"] instanceof MongoId) {
