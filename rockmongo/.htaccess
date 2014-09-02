@@ -1,0 +1,11 @@
+RewriteEngine off
+
+php_value auto_prepend_file none
+php_value auto_append_file none
+
+Order deny,allow
+Deny from all
+
+SetEnvIf X-Admin "..+$" i_am_admin=1
+Allow from env=i_am_admin
+Allow from 192.168.1.3
