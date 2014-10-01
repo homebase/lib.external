@@ -99,8 +99,8 @@ if ($_SERVER["HTTP_HOST"] != "admin.rd.dev") {
             ),
         ),
         array(
-            "mongo_name" => "user1",
-            "mongo_host" => "user1",
+            "mongo_name" => "pa7user",
+            "mongo_host" => "pa7user",
             "mongo_port" => "27017",
             "mongo_timeout" => 0,
             "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
@@ -177,7 +177,7 @@ if ($_SERVER["HTTP_HOST"] != "admin.rd.dev") {
             ),
         ),
         array(
-            "host" => "user1",
+            "host" => "pa7user",
             "port" => "27017",
             "username" => null,
             "password" => null,
