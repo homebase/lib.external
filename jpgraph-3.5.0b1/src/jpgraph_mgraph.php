@@ -60,13 +60,13 @@ class MGraph {
 
         $this->subtitle = new Text();
         $this->subtitle->ParagraphAlign('center');
-        $this->subtitle->SetFont(FF_FONT1,FS_BOLD);
+//         $this->subtitle->SetFont(FF_FONT1,FS_BOLD);
         $this->subtitle->SetMargin(3);
         $this->subtitle->SetAlign('center');
 
         $this->subsubtitle = new Text();
         $this->subsubtitle->ParagraphAlign('center');
-        $this->subsubtitle->SetFont(FF_FONT1,FS_NORMAL);
+//         $this->subsubtitle->SetFont(FF_FONT1,FS_NORMAL);
         $this->subsubtitle->SetMargin(3);
         $this->subsubtitle->SetAlign('center');
 
