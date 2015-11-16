@@ -20,8 +20,8 @@ if ($_SERVER["HTTP_HOST"] != "admin.rd.dev") {
     // Production version
     $MONGO["servers"] = array(
         array(
-            "mongo_name" => "mnews",
-            "mongo_host" => "mnews",
+            "mongo_name" => "mdb",
+            "mongo_host" => "mdb", // Replace your MongoDB host ip or domain name here
             "mongo_port" => "27017",
             "mongo_timeout" => 0,
             "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
@@ -31,8 +31,19 @@ if ($_SERVER["HTTP_HOST"] != "admin.rd.dev") {
             ),
         ),
         array(
-            "mongo_name" => "mdb",
-            "mongo_host" => "mdb", // Replace your MongoDB host ip or domain name here
+            "mongo_name" => "mnews2",
+            "mongo_host" => "mnews2",
+            "mongo_port" => "27017",
+            "mongo_timeout" => 0,
+            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
+            "control_auth" => false,//enable control users, works only if mongo_auth=false
+            "control_users" => array( 
+                "admin" => "admin", // Administrator's USERNAME => PASSWORD
+            ),
+        ),
+        array(
+            "mongo_name" => "mnews",
+            "mongo_host" => "mnews",
             "mongo_port" => "27017",
             "mongo_timeout" => 0,
             "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
