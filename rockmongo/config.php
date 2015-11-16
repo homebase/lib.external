@@ -41,6 +41,7 @@ if ($_SERVER["HTTP_HOST"] != "admin.rd.dev") {
                 "admin" => "admin", // Administrator's USERNAME => PASSWORD
             ),
         ),
+/*        
         array(
             "mongo_name" => "mnews",
             "mongo_host" => "mnews",
@@ -52,7 +53,6 @@ if ($_SERVER["HTTP_HOST"] != "admin.rd.dev") {
                 "admin" => "admin", // Administrator's USERNAME => PASSWORD
             ),
         ),
-/*        
         array(
             "mongo_name" => "mdb2",
             "mongo_host" => "mdb2", // Replace your MongoDB host ip or domain name here
@@ -97,7 +97,6 @@ if ($_SERVER["HTTP_HOST"] != "admin.rd.dev") {
                 "admin" => "admin", // Administrator's USERNAME => PASSWORD
             ),
         ),
-*/
         array(
             "mongo_name" => "a4c",
             "mongo_host" => "a4c", // Replace your MongoDB host ip or domain name here
@@ -109,6 +108,7 @@ if ($_SERVER["HTTP_HOST"] != "admin.rd.dev") {
                 "admin" => "admin", // Administrator's USERNAME => PASSWORD
             ),
         ),
+*/
         array(
             "mongo_name" => "pa7user",
             "mongo_host" => "pa7user",
