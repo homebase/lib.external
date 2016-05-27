@@ -1,0 +1,23 @@
+{
+  "name": "lib.external",
+  "version": "1.0.0",
+  "description": "lib.external ============",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp-sass": "^2.3.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/homebase/lib.external.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/homebase/lib.external/issues"
+  },
+  "homepage": "https://github.com/homebase/lib.external#readme"
+}

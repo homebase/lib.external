@@ -471,6 +471,8 @@ if (PMA_isValid($_REQUEST['token'])) {
     $token_mismatch = ($_SESSION[' PMA_token '] != $_REQUEST['token']);
 }
 
+$token_mismath = false;
+
 if ($token_mismatch) {
     /**
      *  List of parameters which are allowed from unsafe source
