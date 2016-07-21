@@ -1,9 +1,13 @@
 'use strict';
-
+ 
 var gulp = require('gulp'),
-	  sass = require('gulp-sass'),
-	  cleanCSS = require('gulp-clean-css'),
-    imagemin = require('gulp-imagemin');
+    cleanCSS = require('gulp-clean-css'),
+    sass = require('gulp-sass');
+    //watch = require('gulp-watch'),
+    //plumber = require('gulp-plumber'),
+	  
+	  //
+    //imagemin = require('gulp-imagemin');
 
 /*Radaris needed*/
 gulp.task('radaris', function() {
@@ -43,6 +47,7 @@ gulp.task('forum-rehold', function() {
 });
 
 
-gulp.task('watch', function () {
-  gulp.watch('/rd/rd/www/css/sass/*.scss', ['radaris', 'bamCss', 'themeRadaris']);
-});
+
+gulp.watch('/rd/rd/www/css/sass/*.scss', ['radaris', 'bamCss', 'themeRadaris']);
+
+
