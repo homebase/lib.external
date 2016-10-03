@@ -1,53 +1,42 @@
 'use strict';
  
-var gulp = require('gulp'),
-    cleanCSS = require('gulp-clean-css'),
-    sass = require('gulp-sass');
-    //watch = require('gulp-watch'),
-    //plumber = require('gulp-plumber'),
-	  
-	  //
-    //imagemin = require('gulp-imagemin');
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var sassGlob = require('gulp-sass-glob');
+var cleanCSS = require('gulp-clean-css');
+var imagemin = require('gulp-imagemin');
+var autoprefixer = require('gulp-autoprefixer');
 
-/*Radaris needed*/
-gulp.task('radaris', function() {
-  return gulp.src('/rd/rd/www/css/sass/main.scss')
-  .pipe(sass())
-  .pipe(cleanCSS())
-  .pipe(gulp.dest('/rd/rd/www/css'))
-});
+// Paths
+var basePath = '/rd/rd/www/',
+    sassPath = basePath + 'css/sass/',
+    cssPath = basePath + 'css/',
+    jsPath = basePath + 'js/',
+    rawImagePath = basePath + 'images/',
+    imagePath = basePath + 'img/';
 
-gulp.task('themeRadaris', function() {
-  return gulp.src('/rd/rd/www/css/sass/bootstrap-theme.scss')
-  .pipe(sass())
-  .pipe(cleanCSS())
-  .pipe(gulp.dest('/rd/rd/www/css'))
-});
 
-gulp.task('bamCss', function() {
-  return gulp.src('/rd/rd/www/css/sass/bam_insider.scss')
-  .pipe(sass())
-  .pipe(cleanCSS())
-  .pipe(gulp.dest('/rd/rd/www/css'))
-});
-
-/*Radaris needed END*/
-
-gulp.task('compressImages', function() {
-  gulp.src('/rd/rd/www/img/*.png')
+gulp.task('images', function() {
+  gulp.src(rawImagePath +'**')
     .pipe(imagemin())
-    .pipe(gulp.dest('/rd/rd/www/images/'))
+    .pipe(gulp.dest(imagePath))
 });
 
-gulp.task('forum-rehold', function() {
-  return gulp.src('/rd/rd/www/css/forum/sass/forum.scss')
-  .pipe(sass())
-  .pipe(cleanCSS())
-  .pipe(gulp.dest('/rd/rd/www/css'))
+gulp.task('sass', function () {
+  return gulp
+    .src(sassPath + '**/*.scss')
+    .pipe(sassGlob())
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(autoprefixer('last 2 versions'))
+    .pipe(gulp.dest(cssPath));
 });
 
-
-
-gulp.watch('/rd/rd/www/css/sass/*.scss', ['radaris', 'bamCss', 'themeRadaris']);
+gulp.task('watch', function(event) {
+  gulp.watch(sassPath + '**', function() {
+        setTimeout(function () { 
+            gulp.start('sass');
+        }, 1000); // this timeout fix problem with sftp file transfer
+    });
+});
 
 
