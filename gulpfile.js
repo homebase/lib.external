@@ -2,14 +2,23 @@
  
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+//var concat = require('gulp-concat');
 var sassGlob = require('gulp-sass-glob');
 var cleanCSS = require('gulp-clean-css');
 var imagemin = require('gulp-imagemin');
 var autoprefixer = require('gulp-autoprefixer');
 
+
+// gulp watch         watching for radaris
+// gulp watch --c1    watching for people-background-check.com
+
+var basePath = '/rd/rd/www/';
+if (process.argv[3] == '--c1') {
+    basePath = '/rd/rdc/people-background-check.com/www/';
+}
+
 // Paths
-var basePath = '/rd/rd/www/',
-    sassPath = basePath + 'css/sass/',
+var sassPath = basePath + 'css/sass/',
     cssPath = basePath + 'css/',
     jsPath = basePath + 'js/',
     rawImagePath = basePath + 'images/',
@@ -26,12 +35,13 @@ gulp.task('sass', function () {
   return gulp
     .src(sassPath + '**/*.scss')
     .pipe(sassGlob())
-    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(sass({outputStyle: 'compressed', includePaths: [sassPath], errLogToConsole: true}).on('error', sass.logError))
     .pipe(autoprefixer('last 2 versions'))
     .pipe(gulp.dest(cssPath));
 });
 
 gulp.task('watch', function(event) {
+  console.log(sassPath);
   gulp.watch(sassPath + '**', function() {
         setTimeout(function () { 
             gulp.start('sass');
@@ -40,3 +50,6 @@ gulp.task('watch', function(event) {
 });
 
 
+gulp.task('mytask', function() {
+    console.log(basePath);
+});
