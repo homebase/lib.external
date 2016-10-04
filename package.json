@@ -28,6 +28,7 @@
     "gulp-load-plugins": "^1.2.4",
     "gulp-sass-error": "^1.0.2",
     "gulp-sass-glob": "^1.0.6",
+    "gulp-uglifyjs": "^0.6.2",
     "gulp-watch": "^4.3.9",
     "node-sass": "^3.9.3"
   }
