@@ -12,6 +12,7 @@ var sassGlob = require('gulp-sass-glob');
 var cleanCSS = require('gulp-clean-css');
 var imagemin = require('gulp-imagemin');
 var autoprefixer = require('gulp-autoprefixer');
+var postcss      = require('gulp-postcss');
 
 
 // gulp watch         watching for radaris
@@ -36,12 +37,34 @@ gulp.task('images', function() {
     .pipe(gulp.dest(imagePath))
 });
 
+
+gulp.task('aaa', () =>
+    gulp.src(cssPath + '*.css')
+        .pipe(sourcemaps.init())
+        .pipe(autoprefixer())
+        .pipe(concat('main.css'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(cssPath))
+);
+
+
 gulp.task('sass', function () {
   return gulp
     .src(sassPath + '**/*.scss')
-    .pipe(sassGlob())
+    .pipe(sourcemaps.init())
+    //.pipe(sassGlob())
+
+
+
     .pipe(sass({outputStyle: 'compressed', includePaths: [sassPath], errLogToConsole: true}).on('error', sass.logError))
-    .pipe(autoprefixer('last 2 versions'))
+    // .pipe(postcss([require('postcss-flexbugs-fixes')]))
+    // .pipe(autoprefixer({
+    //       browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']
+    //     }))
+    // .pipe(sourcemaps.write())
+
+    .pipe(autoprefixer())
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(cssPath));
 });
 
