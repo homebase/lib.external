@@ -1,13 +1,18 @@
 'use strict';
  
 var gulp = require('gulp');
+var sourcemaps = require('gulp-sourcemaps');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
+var babel = require('gulp-babel');
+var es2015 = require('babel-preset-es2015');
+var plumber = require('gulp-plumber');
 var uglify = require('gulp-uglifyjs');
 var sassGlob = require('gulp-sass-glob');
 var cleanCSS = require('gulp-clean-css');
 var imagemin = require('gulp-imagemin');
 var autoprefixer = require('gulp-autoprefixer');
+var postcss      = require('gulp-postcss');
 
 
 // gulp watch         watching for radaris
@@ -32,35 +37,80 @@ gulp.task('images', function() {
     .pipe(gulp.dest(imagePath))
 });
 
+
+gulp.task('aaa', () =>
+    gulp.src(cssPath + '*.css')
+        .pipe(sourcemaps.init())
+        .pipe(autoprefixer())
+        .pipe(concat('main.css'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(cssPath))
+);
+
+
 gulp.task('sass', function () {
   return gulp
     .src(sassPath + '**/*.scss')
-    .pipe(sassGlob())
+    .pipe(sourcemaps.init())
+    //.pipe(sassGlob())
+
+
+
     .pipe(sass({outputStyle: 'compressed', includePaths: [sassPath], errLogToConsole: true}).on('error', sass.logError))
-    .pipe(autoprefixer('last 2 versions'))
+    // .pipe(postcss([require('postcss-flexbugs-fixes')]))
+    // .pipe(autoprefixer({
+    //       browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']
+    //     }))
+    // .pipe(sourcemaps.write())
+
+    .pipe(autoprefixer())
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(cssPath));
 });
 
-gulp.task('scripts', function () {
+
+
+// to compile scripts for people-background-check.com run gulp scripts --c1
+gulp.task('es2015', function () {
     return gulp.src([
         jsPath + 'raw/foundation/foundation.core.js',
         jsPath + 'raw/foundation/foundation.util.*.js',
-        jsPath + 'raw/foundation/foundation.tooltip.js'
+        jsPath + 'raw/foundation/foundation.tooltip.js',
+        jsPath + 'raw/foundation/foundation.dropdown.js',
+        jsPath + 'raw/foundation/foundation.dropdownMenu.js',
+        jsPath + 'raw/foundation/foundation.responsiveMenu.js',
+        jsPath + 'raw/foundation/foundation.responsiveToggle.js',
+        jsPath + 'raw/foundation/foundation.reveal.js',
     ])
-    //.pipe(uglify('app.min.js', {
-    //  outSourceMap: true
-    //}))
-    //.pipe(uglify())
-    .pipe(concat('main.js'))
+    .pipe(sourcemaps.init())
+    .pipe(babel({
+            presets: [es2015]
+    }))
+    .pipe(concat('foundation.js'))
     .pipe(gulp.dest(jsPath));
 });
+
+gulp.task('scripts', function () {
+    gulp.start('es2015');
+    return gulp.src([
+        jsPath + 'raw/jquery-ahm.js',
+        jsPath + 'raw/jquery-run.js',
+        jsPath + 'foundation.js',
+        jsPath + 'raw/typeahead.js',
+        jsPath + 'raw/rdcf.js',
+    ])
+    .pipe(concat('main.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest(jsPath));
+});
+
 
 gulp.task('watch', function(event) {
   console.log(sassPath);
   gulp.watch(sassPath + '**', function() {
         setTimeout(function () { 
             gulp.start('sass');
-        }, 1000); // this timeout fix problem with sftp file transfer
+        }, 3000); // this timeout fix problem with sftp file transfer
     });
 });
 
