@@ -4,14 +4,18 @@
  * A PHP-based Foursquare client library with a focus on simplicity and ease of integration
  * 
  * @package php-foursquare 
- * @author Stephen Young <stephen@tryllo.com>, @stephenyoungdev
- * @version 1.0.0
+ * @author Stephen Young <me@hownowstephen.com>, @hownowstephen
+ * @version 1.2.0
  * @license GPLv3 <http://www.gnu.org/licenses/gpl.txt>
  */
 
-// ???
-DEFINE("HTTP_GET","GET");
-DEFINE("HTTP_POST","POST");
+// Set the default version
+// @TODO: Warning when the version becomes too out of date
+define("DEFAULT_VERSION", "20140201");
+
+// I have no explanation as to why this is necessary
+define("HTTP_GET","GET");
+define("HTTP_POST","POST");
 
 /**
  * FoursquareApi
@@ -28,12 +32,14 @@ class FoursquareApi {
 	private $BaseUrl = "https://api.foursquare.com/";
 	/** @var String $AuthUrl The url for obtaining the auth access code */
 	private $AuthUrl = "https://foursquare.com/oauth2/authenticate";
+	/** @var String $AuthorizeUrl The url for obtaining an auth token, reprompting even if logged in */
+	private $AuthorizeUrl = "https://foursquare.com/oauth2/authorize";
 	/** @var String $TokenUrl The url for obtaining an auth token */
 	private $TokenUrl = "https://foursquare.com/oauth2/access_token";
 	
 	// Edited Petr Babicka (babcca@gmail.com) https://developer.foursquare.com/overview/versioning
 	/** @var String $Version YYYYMMDD */
-	private $Version = '20120228'; 
+	private $Version;
 
 	/** @var String $ClientID */
 	private $ClientID;
@@ -45,20 +51,28 @@ class FoursquareApi {
 	private $AuthToken;
 	/** @var String $ClientLanguage */
 	private $ClientLanguage;
-	
-	/**
-	 * Constructor for the API
-	 * Prepares the request URL and client api params
-	 * @param String $client_id
-	 * @param String $client_secret
-	 * @param String $version Defaults to v2, appends into the API url
-	 */
-	public function  __construct($client_id = false,$client_secret = false, $redirect_uri='', $version='v2', $language='en'){
+    /** @var String[] $ResponseHeaders */
+    public $ResponseHeaders = array();
+    /** @var String last url sent */
+    public $LastUrl;
+
+    /**
+     * Constructor for the API
+     * Prepares the request URL and client api params
+     * @param bool|String $client_id
+     * @param bool|String $client_secret
+     * @param string $redirect_uri
+     * @param String $version Defaults to v2, appends into the API url
+     * @param string $language
+     * @param string $api_version https://developer.foursquare.com/overview/versioning
+     */
+	public function  __construct($client_id = false,$client_secret = false, $redirect_uri='', $version='v2', $language='en', $api_version=DEFAULT_VERSION){
 		$this->BaseUrl = "{$this->BaseUrl}$version/";
 		$this->ClientID = $client_id;
 		$this->ClientSecret = $client_secret;
 		$this->ClientLanguage = $language;
 		$this->RedirectUri = $redirect_uri;
+        $this->Version = $api_version;
 	}
     
 	public function setRedirectUri( $uri ) {
@@ -153,10 +167,15 @@ class FoursquareApi {
 	 * @param String $url The base url to query
 	 * @param Array $params The parameters to pass to the request
 	 */
-	private function Request($url,$params=false,$type=HTTP_GET){
+	private function Request($url, $params=false, $type=HTTP_GET){
 		
 		// Populate data for the GET request
 		if($type == HTTP_GET) $url = $this->MakeUrl($url,$params);
+
+        $this->LastUrl = $url;
+
+        // Reset the headers every time we initiate a new request
+        $this->ResponseHeaders = array();
 
 		// borrowed from Andy Langton: http://andylangton.co.uk/
 		$ch = curl_init();
@@ -169,9 +188,11 @@ class FoursquareApi {
 			curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.X.Y.Z Safari/525.13.');
 		}
 		curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 		$acceptLanguage[] = "Accept-Language:" . $this->ClientLanguage;
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $acceptLanguage); 
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $acceptLanguage);
+        // Set the header callback
+        curl_setopt($ch, CURLOPT_HEADERFUNCTION, array($this, 'ParseHeaders'));
 		// Populate the data for POST
 		if($type == HTTP_POST) {
 			curl_setopt($ch, CURLOPT_POST, 1); 
@@ -184,6 +205,22 @@ class FoursquareApi {
 		
 		return $result;
 	}
+
+    /**
+     * Callback function to handle header strings as they are returned by cUrl in the $this->Request() function
+     * Parses header strings into key/value pairs and stores them in $ResponseHeaders array
+     *
+     * @param $ch
+     * @param $header
+     * @return int
+     */
+    private function ParseHeaders($ch, $header) {
+        if (strpos($header, ':') !== false) {
+            $header_split = explode(':', $header);
+            $this->ResponseHeaders[strtolower(trim($header_split[0]))] = trim($header_split[1]);
+        }
+        return strlen($header);
+    }
 
 	/**
 	 * GET
@@ -217,7 +254,7 @@ class FoursquareApi {
 		$response = $this->GET($geoapi,$params);
 		$json = json_decode($response);
 		if ($json->status === "ZERO_RESULTS") {
-			return NULL;
+			return null;
 		} else {
 			return array($json->results[0]->geometry->location->lat,$json->results[0]->geometry->location->lng);
 		}
@@ -231,12 +268,7 @@ class FoursquareApi {
 	 * @param Array $params The parameters to pass to the URL
 	 */	
 	private function MakeUrl($url,$params){
-		if(!empty($params) && $params){
-			foreach($params as $k=>$v) $kv[] = "$k=$v";
-			$url_params = str_replace(" ","+",implode('&',$kv));
-			$url = trim($url) . '?' . $url_params;
-		}
-		return $url;
+	    return trim($url) . '?' . http_build_query($params); 
 	}
 	
 	// Access token functions
@@ -249,7 +281,7 @@ class FoursquareApi {
 	public function SetAccessToken($token){
 		$this->AuthToken = $token;
 	}
-	
+
 	/**
 	 * AuthenticationLink
 	 * Returns a link to the Foursquare web authentication page.
@@ -263,6 +295,21 @@ class FoursquareApi {
 		return $this->MakeUrl($this->AuthUrl,$params);
 	}
 	
+  /**
+   * AuthorizeLink
+   * Returns a link to the Foursquare web authentication page. Using /authorize will ask the user to
+   * re-authenticate their identity and reauthorize your app while giving the user the option to
+   * login under a different account.
+   * @param String $redirect The configured redirect_uri for the provided client credentials
+   */
+  public function AuthorizeLink($redirect=''){
+    if ( 0 === strlen( $redirect ) ) {
+      $redirect = $this->RedirectUri;
+    }
+    $params = array("client_id"=>$this->ClientID,"response_type"=>"code","redirect_uri"=>$redirect);
+    return $this->MakeUrl($this->AuthorizeUrl,$params);
+  }
+  
 	/**
 	 * GetToken
 	 * Performs a request to Foursquare for a user token, and returns the token, while also storing it
