@@ -6,7 +6,7 @@
  * @package PhpMyAdmin
  */
 
-/**
+/*
  * Gets some core libraries and displays a top message if required
  */
 require_once 'libraries/common.inc.php';
