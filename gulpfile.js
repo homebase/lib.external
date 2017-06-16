@@ -19,6 +19,8 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/rdc/backgroundcheck.run/www/';
 } if (process.argv[3] == '--c3') {
     basePath = '/rd/phone/phoneowner.us/www/';
+} if (process.argv[3] == '--c4') {
+    basePath = '/rd/phone/phoneid.us/www/';
 } if (process.argv[3] == '--licenses') {
     basePath = '/rd/license/licensefiles.com/www/';
 } if (process.argv[3] == '--wellnut') {
@@ -81,7 +83,14 @@ gulp.task('js', function () {
         .pipe(gulp.dest(jsPath))
 });
 
-
+gulp.task('watch', function(event) {
+  console.log(sassPath);
+  gulp.watch(sassPath + '**', function() {
+        setTimeout(function () { 
+            gulp.start('sass');
+        }, 1000); // this timeout fix problem with sftp file transfer
+    });
+});
 
 
 
