@@ -21,6 +21,8 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/vhosts/phone/phoneowner.us/www/';
 } if (process.argv[3] == '--c4') {
     basePath = '/rd/vhosts/phone/phoneid.us/www/';
+} if (process.argv[3] == '--c5') {
+    basePath = '/rd/vhosts/rdc/newenglandfacts.com/www/';
 } if (process.argv[3] == '--licenses') {
     basePath = '/rd/vhosts/license/licensefiles.com/www/';
 } if (process.argv[3] == '--wellnut') {

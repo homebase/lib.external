@@ -34,6 +34,8 @@ var postcss      = require('gulp-postcss');
 // gulp watch --c1    watching for people-background-check.com
 // gulp watch --c2    watching for backgroundcheck.run
 // gulp watch --c3    watching for phoneowner.us
+// gulp watch --c4    watching for phoneid.us
+// gulp watch --c5    watching for newenglandfacts.com
 // gulp watch --licenses    watching for licensefiles.com
 // gulp watch --wellnut    watching for ??
 
@@ -46,6 +48,12 @@ if (process.argv[3] == '--c2') {
 }
 if (process.argv[3] == '--c3') {
     basePath = '/rd/phone/phoneowner.us/www/';
+}
+if (process.argv[3] == '--c4') {
+    basePath = '/rd/phone/phoneid.us/www/';
+}
+if (process.argv[3] == '--c5') {
+    basePath = '/rd/rdc/newenglandfacts.com/www/';
 }
 if (process.argv[3] == '--licenses') {
     basePath = '/rd/license/licensefiles.com/www/';
