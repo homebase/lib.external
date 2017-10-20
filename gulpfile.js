@@ -27,6 +27,8 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/vhosts/license/licensefiles.com/www/';
 } if (process.argv[3] == '--wellnut') {
     basePath = '/rd/vhosts/wellnut/www/';
+} if (process.argv[3] == '--arrestfacts') {
+    basePath = '/rd/vhosts/arrestfacts/www/';
 }
 
 // Paths
