@@ -34,8 +34,9 @@ On all r-k already installed: node & npm & gulp and it working now.
 p\s - for the future we need to update node to 6.3.0 & npm to 3.10.3 
 
 How to install gulp to fresh system:
-1) - install node & npm
+1) install node & npm
     #Install Node.js 8 on
+```    
     # Using Ubuntu
     curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
     sudo apt-get install -y nodejs
@@ -47,6 +48,13 @@ How to install gulp to fresh system:
     # Enterprise Linux Distributions
     curl -sL https://rpm.nodesource.com/setup_8.x | bash -
     yum install -y nodejs
-
-2) - install global gulp - npm install --global gulp-cli
-3) - create link to use gulp module from project - export PATH=./node_modules/..bin:./node_modules/.bin:../../node_modules/.bin:$PATH
+```
+2) install gulp & gulp-cli
+```
+    npm install --global gulp
+    npm install --global gulp-cli
+```
+3) create link to use gulp module from project
+```
+    export PATH=./node_modules/../bin:./node_modules/.bin:../../node_modules/.bin:$PATH
+```
