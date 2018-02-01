@@ -384,7 +384,8 @@ class SMTP {
     }
 
     $max_line_length = 998; // used below; set here for ease in change
-
+/* 
+    //each() is deprecated in php 7.2    
     while(list(,$line) = @each($lines)) {
       $lines_out = null;
       if($line == "" && $in_headers) {
@@ -404,13 +405,13 @@ class SMTP {
           $line = substr($line,$pos + 1);
         }
 
-        /* if processing headers add a LWSP-char to the front of new line
-         * rfc 822 on long msg headers
-         */
+        // if processing headers add a LWSP-char to the front of new line
+        // rfc 822 on long msg headers
         if($in_headers) {
           $line = "\t" . $line;
         }
       }
+    
       $lines_out[] = $line;
 
       // send the lines to the server
@@ -424,7 +425,48 @@ class SMTP {
         fputs($this->smtp_conn,$line_out . $this->CRLF);
       }
     }
+*/
+    
+    foreach ($lines as $line) {
+      $lines_out = null;
+      if($line == "" && $in_headers) {
+        $in_headers = false;
+      }
+      // ok we need to break this line up into several smaller lines
+      while(strlen($line) > $max_line_length) {
+        $pos = strrpos(substr($line,0,$max_line_length)," ");
 
+        // Patch to fix DOS attack
+        if(!$pos) {
+          $pos = $max_line_length - 1;
+          $lines_out[] = substr($line,0,$pos);
+          $line = substr($line,$pos);
+        } else {
+          $lines_out[] = substr($line,0,$pos);
+          $line = substr($line,$pos + 1);
+        }
+
+        // if processing headers add a LWSP-char to the front of new line
+        // rfc 822 on long msg headers
+        if($in_headers) {
+          $line = "\t" . $line;
+        }
+      }
+    
+      $lines_out[] = $line;
+
+      // send the lines to the server
+      foreach ($lines_out as $line_out) {
+        if(strlen($line_out) > 0)
+        {
+          if(substr($line_out, 0, 1) == ".") {
+            $line_out = "." . $line_out;
+          }
+        }
+        fputs($this->smtp_conn,$line_out . $this->CRLF);
+      }
+    }
+    
     // message data has been sent
     fputs($this->smtp_conn, $this->CRLF . "." . $this->CRLF);
 
