@@ -4,6 +4,7 @@
   "description": "lib.external ============",
   "main": "index.js",
   "dependencies": {
+    "bootstrap": "^4.0.0",
     "gulp": "^3.9.1",
     "gulp-include": "^2.3.1",
     "gulp-install": "^0.6.0",

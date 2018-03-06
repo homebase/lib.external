@@ -29,6 +29,10 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/vhosts/wellnut/www/';
 } if (process.argv[3] == '--arrestfacts') {
     basePath = '/rd/vhosts/arrestfacts/www/';
+} if (process.argv[3] == '--licenseswhois') {
+    basePath = '/rd/vhosts/license/licensewhois.com/www/';
+} if (process.argv[3] == '--wp') {
+    basePath = '/rd/vhosts/rdc/wp.com/www/';
 }
 
 // Paths
