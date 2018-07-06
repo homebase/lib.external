@@ -33,6 +33,8 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/vhosts/license/licensewhois.com/www/';
 } if (process.argv[3] == '--veripages') {
     basePath = '/rd/vhosts/rdc/veripages.com/www/';
+} if (process.argv[3] == '--peoplelegacy') {
+    basePath = '/rd/vhosts/peoplelegacy/www/';
 }
 
 // Paths
