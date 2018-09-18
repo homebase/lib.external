@@ -239,6 +239,8 @@ class FieldController extends BaseController {
 					$type = "string";
 					break;
 				case "array":
+					$type = "mixed";
+					break;
 				case "object":
 					// int64 is returned as object (Kyryl Bilokurov <kyryl.bilokurov@gmail.com>)
 					if (get_class($data) == "MongoInt64") {
@@ -392,8 +394,7 @@ class FieldController extends BaseController {
 			}
 		}
 		$options["background"] = 1;
-		#mike $options["safe"] = 1;
-		$options["w"] = 1;
+		$options["safe"] = 1;
 		
 		//name
 		$name = trim(xn("name"));

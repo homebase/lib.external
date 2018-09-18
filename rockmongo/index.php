@@ -5,11 +5,11 @@
  * In here we define some default settings and start the configuration files
  * @package rockmongo
  */
-
+require_once 'vendor/autoload.php';
 /**
 * Defining version number and enabling error reporting
 */
-define("ROCK_MONGO_VERSION", "1.1.5");
+define("ROCK_MONGO_VERSION", "1.1.8");
 
 error_reporting(E_ALL);
 
@@ -24,8 +24,10 @@ if (!class_exists("Mongo") && !class_exists("MongoClient")) {
 }
 
 // enforce Mongo support for int64 data type (Kyryl Bilokurov <kyryl.bilokurov@gmail.com>)
-ini_set("mongo.native_long", 1);
-ini_set("mongo.long_as_object", 1);
+if (PHP_INT_SIZE == 8) {
+	ini_set("mongo.native_long", 1);
+	ini_set("mongo.long_as_object", 1);
+}
 
 /**
 * Initializing configuration files and RockMongo

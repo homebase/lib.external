@@ -46,9 +46,12 @@ function rock_array_sort(array $array, $key = null, $asc = true) {
 	else {
 		$GLOBALS["ROCK_ARRAY_SORT_KEY_" . nil] = $key;
 		uasort($array, 
-			$asc ? create_function('$p1,$p2', '$key=$GLOBALS["ROCK_ARRAY_SORT_KEY_" . nil];$p1=rock_array_get($p1,$key);$p2=rock_array_get($p2,$key);if ($p1>$p2){return 1;}elseif($p1==$p2){return 0;}else{return -1;}')
+#			$asc ? create_function('$p1,$p2', '$key=$GLOBALS["ROCK_ARRAY_SORT_KEY_" . nil];$p1=rock_array_get($p1,$key);$p2=rock_array_get($p2,$key);if ($p1>$p2){return 1;}elseif($p1==$p2){return 0;}else{return -1;}')
+#			:
+#			create_function('$p1,$p2', '$key=$GLOBALS["rock_ARRAY_SORT_KEY_" . nil];$p1=rock_array_get($p1,$key);$p2=rock_array_get($p2,$key);if ($p1<$p2){return 1;}elseif($p1==$p2){return 0;}else{return -1;}')
+                        $asc ? function($p1,$p2) {$key=$GLOBALS["ROCK_ARRAY_SORT_KEY_" . nil];$p1=rock_array_get($p1,$key);$p2=rock_array_get($p2,$key);if ($p1>$p2){return 1;}elseif($p1==$p2){return 0;}else{return -1;}}
 			:
-			create_function('$p1,$p2', '$key=$GLOBALS["rock_ARRAY_SORT_KEY_" . nil];$p1=rock_array_get($p1,$key);$p2=rock_array_get($p2,$key);if ($p1<$p2){return 1;}elseif($p1==$p2){return 0;}else{return -1;}')
+                        function($p1,$p2) {$key=$GLOBALS["rock_ARRAY_SORT_KEY_" . nil];$p1=rock_array_get($p1,$key);$p2=rock_array_get($p2,$key);if ($p1<$p2){return 1;}elseif($p1==$p2){return 0;}else{return -1;}}
 		);
 		unset($GLOBALS["ROCK_ARRAY_SORT_KEY_" . nil]);
 	}	
@@ -194,6 +197,9 @@ function rock_load_languages() {
 	while(($file = readdir($handler)) !== false) {
 		$langDir = $dir . DS . $file;
 		if (is_dir($langDir) && preg_match("/^\\w+_\\w+$/", $file)) {
+			$message = array(
+				"TRANSLATION_NAME" => ""
+			);
 			require $langDir . DS . "message.php";
 			$languages[$file] = array( "code" => $file,  "name" => $message["TRANSLATION_NAME"], "id" => $message["TRANSLATION_ID"]);
 		}
