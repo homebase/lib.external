@@ -68,7 +68,7 @@ class Action_Payment extends Action_Reg
 	}
 
 	function to_payment($amount) {
-	    $invoice=Me()->Fin->get_pending_invoice(str_replace('$','',$amount));
+	    $invoice=Me()->Fin->get_pending_invoice(["amount" => str_replace('$','',$amount)]);
 	    $cook="/*".$_COOKIE["uid"];
 		if(Debug::is_dvp())
 			$url="/payment/pay?i=$invoice";
