@@ -35,6 +35,8 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/vhosts/rdc/veripages.com/www/';
 } if (process.argv[3] == '--peoplelegacy') {
     basePath = '/rd/vhosts/peoplelegacy/www/';
+} if (process.argv[3] == '--persontrust') {
+    basePath = '/rd/vhosts/persontrust.com/www/';
 }
 
 // Paths
