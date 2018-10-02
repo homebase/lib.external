@@ -47,6 +47,7 @@
 		<th><?php hm("global_value"); ?></th>
 		<th><?php hm("local_value"); ?></th>
 	</tr>
+	<?php if(!empty($directives)){ ?>
 	<?php foreach ($directives as $param=>$value):?>
 	<tr bgcolor="#fffeee">
 		<td width="200" ><?php h($param);?></td>
@@ -54,6 +55,7 @@
 		<td><?php h($value["local_value"]);?></td>
 	</tr>
 	<?php endforeach; ?>
+	<?php } ?>
 </table>
 
 <div class="gap"></div>

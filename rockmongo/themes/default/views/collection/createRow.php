@@ -13,14 +13,40 @@ function switchFormat(select) {
 		}
 	});
 }
+function generateRandom(){
+    $("#random").show();
+    var data = $('#row_data').val();
+    var json = $.parseJSON(data);
+    var columns = "<option value=''>Select Column</option>";
+    $.each(json,function(key,val){
+        if($.isPlainObject(val)){
+            $.each(val,function(key2,val2){
+                if($.isPlainObject(val2)){
+                    $.each(val2,function(key3,val3){
+                        var v = key+"."+key2+"."+key3;
+                        columns += "<option value='"+v+"'>"+v+"</option>";
+                    });
+                }else{
+                    var v = key+"."+key2;
+                    columns += "<option value='"+v+"'>"+v+"</option>";
+                }
+            });
+        }else{
+           var v = key;
+           columns += "<option value='"+v+"'>"+v+"</option>";
+        }
+    });
+    
+    $('#columns').html(columns);
+}
 </script>
 
 <h3><?php render_navigation($db,$collection,false); ?> &raquo; <?php hm("createrow"); ?></h3>
 
-<?php if (isset($error)):?> 
+<?php if (isset($error)):?>
 <p class="error"><?php h($error);?></p>
 <?php endif; ?>
-<?php if (isset($message)):?> 
+<?php if (isset($message)):?>
 <p class="message"><?php h($message);?></p>
 <?php endif; ?>
 
@@ -34,5 +60,10 @@ function switchFormat(select) {
 <?php hm("data"); ?>
 <br/>
 <textarea rows="35" cols="70" name="data" id="row_data"><?php echo x("data") ?></textarea><br/>
+
+<label>Repeat <input onchange="generateRandom()" type="number" name="count"  value="1" style="width:60px;text-align:center"/> times.</label><br/>
+<div id="random" style="display:none">
+    <label>Randomize <select name="columns" id="columns"></select></label>
+</div>
 <input type="submit" value="<?php hm("save"); ?>"/>
 </form>
