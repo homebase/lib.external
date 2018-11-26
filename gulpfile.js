@@ -37,6 +37,8 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/vhosts/peoplelegacy/www/';
 } if (process.argv[3] == '--persontrust') {
     basePath = '/rd/vhosts/persontrust.com/www/';
+} if (process.argv[3] == '--farm') {
+    basePath = '/rd/vhosts/farm/www/';
 }
 
 // Paths
