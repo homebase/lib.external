@@ -41,6 +41,8 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/vhosts/recordock.com/www/';
 } if (process.argv[3] && process.argv[3].substring(0,8) == '--farm_c') {
     basePath = '/rd/vhosts/farm/sites/c' + process.argv[3].substring(8,9) + '/www/';
+} if (Object.values(process.argv).indexOf('--homemetry') > -1) {
+    basePath = '/rd/vhosts/address/homemetry.com/www/';
 }
 
 // Paths
