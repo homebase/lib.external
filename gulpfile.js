@@ -43,6 +43,8 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/vhosts/farm/sites/c' + process.argv[3].substring(8,9) + '/www/';
 } if (Object.values(process.argv).indexOf('--homemetry') > -1) {
     basePath = '/rd/vhosts/address/homemetry.com/www/';
+} if (Object.values(process.argv).indexOf('--rehold') > -1) {
+    basePath = '/rd/vhosts/address/rehold.com/www/';
 }
 
 // Paths
