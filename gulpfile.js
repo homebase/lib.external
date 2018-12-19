@@ -17,7 +17,7 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/vhosts/rdc/people-background-check.com/www/';
 } if (process.argv[3] == '--c2') {
     basePath = '/rd/vhosts/rdc/backgroundcheck.run/www/';
-} if (process.argv[3] == '--c3') {
+} if (Object.values(process.argv).indexOf('--c3') > -1) {
     basePath = '/rd/vhosts/phone/phoneowner.us/www/';
 } if (process.argv[3] == '--c4') {
     basePath = '/rd/vhosts/phone/phoneid.us/www/';
