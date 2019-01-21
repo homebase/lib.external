@@ -17,7 +17,7 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/vhosts/rdc/people-background-check.com/www/';
 } if (process.argv[3] == '--c2') {
     basePath = '/rd/vhosts/rdc/backgroundcheck.run/www/';
-} if (process.argv[3] == '--c3') {
+} if (Object.values(process.argv).indexOf('--c3') > -1) {
     basePath = '/rd/vhosts/phone/phoneowner.us/www/';
 } if (process.argv[3] == '--c4') {
     basePath = '/rd/vhosts/phone/phoneid.us/www/';
@@ -41,6 +41,10 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/vhosts/federal-data.com/www/';
 } if (process.argv[3] && process.argv[3].substring(0,8) == '--farm_c') {
     basePath = '/rd/vhosts/farm/sites/c' + process.argv[3].substring(8,9) + '/www/';
+} if (Object.values(process.argv).indexOf('--homemetry') > -1) {
+    basePath = '/rd/vhosts/address/homemetry.com/www/';
+} if (Object.values(process.argv).indexOf('--rehold') > -1) {
+    basePath = '/rd/vhosts/address/rehold.com/www/';
 }
 
 // Paths
