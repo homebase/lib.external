@@ -35,7 +35,7 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/vhosts/rdc/veripages.com/www/';
 } if (process.argv[3] == '--peoplelegacy') {
     basePath = '/rd/vhosts/peoplelegacy/www/';
-} if (process.argv[3] == '--persontrust') {
+} if (Object.values(process.argv).indexOf('--persontrust') > -1) {
     basePath = '/rd/vhosts/persontrust.com/www/';
 } if (process.argv[3] == '--federal') {
     basePath = '/rd/vhosts/federal-data.com/www/';
