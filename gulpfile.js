@@ -46,7 +46,7 @@ if (process.argv[3] == '--c1') {
 } if (Object.values(process.argv).indexOf('--rehold') > -1) {
     basePath = '/rd/vhosts/address/rehold.com/www/';
 } if (Object.values(process.argv).indexOf('--trustoria') > -1) {
-    basePath = '/rd/vhosts/trustoria.com/www/';
+    basePath = '/rd/vhosts/trustoria/www/';
 }
 
 // Paths
