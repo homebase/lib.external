@@ -31,7 +31,7 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/vhosts/arrestfacts/www/';
 } if (process.argv[3] == '--licenseswhois') {
     basePath = '/rd/vhosts/license/licensewhois.com/www/';
-} if (process.argv[3] == '--veripages') {
+} if (Object.values(process.argv).indexOf('--veripages') > -1) {
     basePath = '/rd/vhosts/rdc/veripages.com/www/';
 } if (process.argv[3] == '--peoplelegacy') {
     basePath = '/rd/vhosts/peoplelegacy/www/';
