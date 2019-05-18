@@ -45,7 +45,7 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/vhosts/address/homemetry.com/www/';
 } if (Object.values(process.argv).indexOf('--rehold') > -1) {
     basePath = '/rd/vhosts/address/rehold.com/www/';
-} if (process.argv[3] == '--cityzor') {
+} if (Object.values(process.argv).indexOf('--cityzor') > -1) {
     basePath = '/rd/vhosts/cityzor/www/';
 } if (Object.values(process.argv).indexOf('--trustoria') > -1) {
     basePath = '/rd/vhosts/trustoria/www/';
