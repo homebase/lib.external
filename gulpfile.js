@@ -31,7 +31,7 @@ if (process.argv[3] == '--c1') {
     basePath = '/rd/vhosts/arrestfacts/www/';
 } if (process.argv[3] == '--licenseswhois') {
     basePath = '/rd/vhosts/license/licensewhois.com/www/';
-} if (process.argv[3] == '--veripages') {
+} if (Object.values(process.argv).indexOf('--veripages') > -1) {
     basePath = '/rd/vhosts/rdc/veripages.com/www/';
 } if (process.argv[3] == '--peoplelegacy') {
     basePath = '/rd/vhosts/peoplelegacy/www/';
@@ -40,15 +40,17 @@ if (process.argv[3] == '--c1') {
 } if (process.argv[3] == '--federal') {
     basePath = '/rd/vhosts/federal-data.com/www/';
 } if (process.argv[3] && process.argv[3].substring(0,8) == '--farm_c') {
-    basePath = '/rd/vhosts/farm/sites/c' + process.argv[3].substring(8,9) + '/www/';
+    basePath = '/rd/vhosts/farm/sites/c' + process.argv[3].substring(8) + '/www/';
 } if (Object.values(process.argv).indexOf('--homemetry') > -1) {
     basePath = '/rd/vhosts/address/homemetry.com/www/';
 } if (Object.values(process.argv).indexOf('--rehold') > -1) {
     basePath = '/rd/vhosts/address/rehold.com/www/';
-} if (process.argv[3] == '--cityzor') {
+} if (Object.values(process.argv).indexOf('--cityzor') > -1) {
     basePath = '/rd/vhosts/cityzor/www/';
 } if (Object.values(process.argv).indexOf('--trustoria') > -1) {
     basePath = '/rd/vhosts/trustoria/www/';
+} if (Object.values(process.argv).indexOf('--trustoria_new') > -1) {
+    basePath = '/rd/vhosts/professions/trustoria/www/';
 } if (Object.values(process.argv).indexOf('--homeflock') > -1) {
     basePath = '/rd/vhosts/homeflock/www/';
 } if (Object.values(process.argv).indexOf('--bizstanding') > -1) {
