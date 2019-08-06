@@ -18,9 +18,20 @@ $i = 0;
 * 
 * @see more details at http://rockmongo.com/wiki/configuration?lang=en_us
 */
-if ($_SERVER["HTTP_HOST"] != "admin.rd.dev") {
+if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
     // Production version
     $MONGO["servers"] = array(
+        array(
+            "mongo_name" => "d-mdb",
+            "mongo_host" => "d-mdb", // Replace your MongoDB host ip or domain name here
+            "mongo_port" => "27017",
+            "mongo_timeout" => 0,
+            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
+            "control_auth" => false,//enable control users, works only if mongo_auth=false
+            "control_users" => array( 
+                "admin" => "admin", // Administrator's USERNAME => PASSWORD
+            ),
+        ),
         array(
             "mongo_name" => "mdb",
             "mongo_host" => "mdb", // Replace your MongoDB host ip or domain name here
@@ -32,6 +43,7 @@ if ($_SERVER["HTTP_HOST"] != "admin.rd.dev") {
                 "admin" => "admin", // Administrator's USERNAME => PASSWORD
             ),
         ),
+/*        
         array(
             "mongo_name" => "mnews2",
             "mongo_host" => "mnews2",
@@ -43,7 +55,6 @@ if ($_SERVER["HTTP_HOST"] != "admin.rd.dev") {
                 "admin" => "admin", // Administrator's USERNAME => PASSWORD
             ),
         ),
-/*        
         array(
             "mongo_name" => "mnews",
             "mongo_host" => "mnews",
@@ -112,8 +123,8 @@ if ($_SERVER["HTTP_HOST"] != "admin.rd.dev") {
         ),
 */
         array(
-            "mongo_name" => "pa1user",
-            "mongo_host" => "pa1user",
+            "mongo_name" => "d-user",
+            "mongo_host" => "d-user",
             "mongo_port" => "27017",
             "mongo_timeout" => 0,
             "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
@@ -133,6 +144,19 @@ if ($_SERVER["HTTP_HOST"] != "admin.rd.dev") {
                 "admin" => "admin", // Administrator's USERNAME => PASSWORD
             ),
         ),
+        // New COLO mongo server
+        array(
+            "mongo_name" => "d-mdb",
+            "mongo_host" => "d-mdb",
+            "mongo_port" => "27017",
+            "mongo_timeout" => 0,
+            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
+            "control_auth" => false,//enable control users, works only if mongo_auth=false
+            "control_users" => array( 
+                "admin" => "admin", // Administrator's USERNAME => PASSWORD
+            ),
+        ),
+        
     );
 } else {
 // Developmen version
