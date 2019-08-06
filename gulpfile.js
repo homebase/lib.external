@@ -11,49 +11,50 @@ var sourcemaps = require('gulp-sourcemaps');
 var rigger = require('gulp-rigger');
 var include = require('gulp-include');
 var imagemin = require('gulp-imagemin');
+var clone_num = null;
 
 var basePath = '/rd/rd/www/';
-if (process.argv[3] == '--c1') {
+if (hasParam(process.argv, '--c1')) {
     basePath = '/rd/vhosts/rdc/people-background-check.com/www/';
-} if (process.argv[3] == '--c2') {
+} if (hasParam(process.argv, '--c2')) {
     basePath = '/rd/vhosts/rdc/backgroundcheck.run/www/';
-} if (Object.values(process.argv).indexOf('--c3') > -1) {
+} if (hasParam(process.argv, '--c3')) {
     basePath = '/rd/vhosts/phone/phoneowner.us/www/';
-} if (process.argv[3] == '--c4') {
+} if (hasParam(process.argv, '--c4')) {
     basePath = '/rd/vhosts/phone/phoneid.us/www/';
-} if (process.argv[3] == '--c5') {
+} if (hasParam(process.argv, '--c5')) {
     basePath = '/rd/vhosts/rdc/newenglandfacts.com/www/';
-} if (process.argv[3] == '--licenses') {
+} if (hasParam(process.argv, '--licenses')) {
     basePath = '/rd/vhosts/license/licensefiles.com/www/';
-} if (process.argv[3] == '--wellnut') {
+} if (hasParam(process.argv, '--wellnut')) {
     basePath = '/rd/vhosts/wellnut/www/';
-} if (process.argv[3] == '--arrestfacts') {
+} if (hasParam(process.argv, '--arrestfacts')) {
     basePath = '/rd/vhosts/arrestfacts/www/';
-} if (process.argv[3] == '--licenseswhois') {
+} if (hasParam(process.argv, '--licenseswhois')) {
     basePath = '/rd/vhosts/license/licensewhois.com/www/';
-} if (Object.values(process.argv).indexOf('--veripages') > -1) {
+} if (hasParam(process.argv, '--veripages')) {
     basePath = '/rd/vhosts/rdc/veripages.com/www/';
-} if (process.argv[3] == '--peoplelegacy') {
+} if (hasParam(process.argv, '--peoplelegacy')) {
     basePath = '/rd/vhosts/peoplelegacy/www/';
-} if (Object.values(process.argv).indexOf('--persontrust') > -1) {
+} if (hasParam(process.argv, '--persontrust')) {
     basePath = '/rd/vhosts/persontrust.com/www/';
-} if (process.argv[3] == '--federal') {
+} if (hasParam(process.argv, '--federal')) {
     basePath = '/rd/vhosts/federal-data.com/www/';
-} if (process.argv[3] && process.argv[3].substring(0,8) == '--farm_c') {
-    basePath = '/rd/vhosts/farm/sites/c' + process.argv[3].substring(8) + '/www/';
-} if (Object.values(process.argv).indexOf('--homemetry') > -1) {
+} if (hasCloneParam(process.argv, '--farm_c')) {
+    basePath = '/rd/vhosts/farm/sites/c' + clone_num + '/www/';
+} if (hasParam(process.argv, '--homemetry')) {
     basePath = '/rd/vhosts/address/homemetry.com/www/';
-} if (Object.values(process.argv).indexOf('--rehold') > -1) {
+} if (hasParam(process.argv, '--rehold')) {
     basePath = '/rd/vhosts/address/rehold.com/www/';
-} if (Object.values(process.argv).indexOf('--cityzor') > -1) {
+} if (hasParam(process.argv, '--cityzor')) {
     basePath = '/rd/vhosts/cityzor/www/';
-} if (Object.values(process.argv).indexOf('--trustoria') > -1) {
+} if (hasParam(process.argv, '--trustoria')) {
     basePath = '/rd/vhosts/trustoria/www/';
-} if (Object.values(process.argv).indexOf('--trustoria_new') > -1) {
+} if (hasParam(process.argv, '--trustoria_new')) {
     basePath = '/rd/vhosts/professions/trustoria/www/';
-} if (Object.values(process.argv).indexOf('--homeflock') > -1) {
+} if (hasParam(process.argv, '--homeflock')) {
     basePath = '/rd/vhosts/homeflock/www/';
-} if (Object.values(process.argv).indexOf('--bizstanding') > -1) {
+} if (hasParam(process.argv, '--bizstanding')) {
     basePath = '/rd/vhosts/bizstanding/www/';
 }
 
@@ -117,3 +118,18 @@ gulp.task('watch', function(event) {
   console.log(sassPath);
   gulp.watch(sassPath + '**', ['sass']);
 });
+
+function hasParam(argv, need_param) {
+    return Object.values(argv).indexOf(need_param) > -1 || false;
+}
+
+function hasCloneParam(argv, need_param) {
+    var res = false;
+    argv.forEach((val, index) => {
+        if (val.substring(0,8) === need_param) {
+            clone_num = val.substring(8);
+            res = true;
+        }
+    });
+    return res;
+}
