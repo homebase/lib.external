@@ -56,6 +56,8 @@ if (hasParam(process.argv, '--c1')) {
     basePath = '/rd/vhosts/homeflock/www/';
 } if (hasParam(process.argv, '--bizstanding')) {
     basePath = '/rd/vhosts/bizstanding/www/';
+}if (hasParam(process.argv, '--pintown')) {
+    basePath = '/rd/vhosts/pintown/www/';
 }
 
 // Paths
