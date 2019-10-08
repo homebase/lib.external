@@ -38,8 +38,8 @@ if (hasParam(process.argv, '--c1')) {
     basePath = '/rd/vhosts/peoplelegacy/www/';
 } if (hasParam(process.argv, '--persontrust')) {
     basePath = '/rd/vhosts/persontrust.com/www/';
-} if (hasParam(process.argv, '--centedo')) {
-    basePath = '/rd/vhosts/centede.com/www/';
+} if (hasParam(process.argv, '--centeda')) {
+    basePath = '/rd/vhosts/centeda.com/www/';
 } if (hasParam(process.argv, '--federal')) {
     basePath = '/rd/vhosts/federal-data.com/www/';
 } if (hasCloneParam(process.argv, '--farm_c')) {
