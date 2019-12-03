@@ -58,3 +58,7 @@ How to install gulp to fresh system:
 ```
     export PATH=./node_modules/../bin:./node_modules/.bin:../../node_modules/.bin:$PATH
 ```
+4) future upgrades
+    cd /rd/lib.external
+    npm install --save-dev gulp
+    npm audit fix
