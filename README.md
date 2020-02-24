@@ -34,6 +34,7 @@ On all r-k already installed: node & npm & gulp and it working now.
 p\s - for the future we need to update node to 6.3.0 & npm to 3.10.3 
 
 How to install gulp to fresh system:
+#https://hostadvice.com/how-to/how-to-install-node-js-on-ubuntu-18-04/
 1) install node & npm
     #Install Node.js 8 on
 ```    
