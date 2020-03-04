@@ -45,6 +45,28 @@ if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
             ),
         ),
         array(
+            "mongo_name" => "mdb2-s",
+            "mongo_host" => "mdb2-s", // Replace your MongoDB host ip or domain name here
+            "mongo_port" => "27017",
+            "mongo_timeout" => 0,
+            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
+            "control_auth" => false,//enable control users, works only if mongo_auth=false
+            "control_users" => array(
+                "admin" => "admin", // Administrator's USERNAME => PASSWORD
+            ),
+        ),
+        array(
+            "mongo_name" => "mdb2-a",
+            "mongo_host" => "mdb2-a", // Replace your MongoDB host ip or domain name here
+            "mongo_port" => "27017",
+            "mongo_timeout" => 0,
+            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
+            "control_auth" => false,//enable control users, works only if mongo_auth=false
+            "control_users" => array(
+                "admin" => "admin", // Administrator's USERNAME => PASSWORD
+            ),
+        ),
+        array(
             "mongo_name" => "rbackup",
             "mongo_host" => "rbackup", // Replace your MongoDB host ip or domain name here
             "mongo_port" => "27017",
@@ -58,6 +80,39 @@ if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
         array(
             "mongo_name" => "d-user",
             "mongo_host" => "d-user",
+            "mongo_port" => "27017",
+            "mongo_timeout" => 0,
+            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
+            "control_auth" => false,//enable control users, works only if mongo_auth=false
+            "control_users" => array(
+                "admin" => "admin", // Administrator's USERNAME => PASSWORD
+            ),
+        ),
+        array(
+            "mongo_name" => "d-user2",
+            "mongo_host" => "d-user2",
+            "mongo_port" => "27017",
+            "mongo_timeout" => 0,
+            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
+            "control_auth" => false,//enable control users, works only if mongo_auth=false
+            "control_users" => array(
+                "admin" => "admin", // Administrator's USERNAME => PASSWORD
+            ),
+        ),
+        array(
+            "mongo_name" => "d-user-s",
+            "mongo_host" => "d-user-s",
+            "mongo_port" => "27017",
+            "mongo_timeout" => 0,
+            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
+            "control_auth" => false,//enable control users, works only if mongo_auth=false
+            "control_users" => array(
+                "admin" => "admin", // Administrator's USERNAME => PASSWORD
+            ),
+        ),
+        array(
+            "mongo_name" => "d-user-a",
+            "mongo_host" => "d-user-a",
             "mongo_port" => "27017",
             "mongo_timeout" => 0,
             "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
