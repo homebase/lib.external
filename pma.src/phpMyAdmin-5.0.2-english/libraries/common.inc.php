@@ -199,6 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($token_mismatch) {
         /* Warn in case the mismatch is result of failed setting of session cookie */
+
         if (isset($_POST['set_session']) && $_POST['set_session'] != session_id()) {
             trigger_error(
                 __(
