@@ -120,7 +120,7 @@ class Horde {
             Horde::fatal(PEAR::raiseError('Horde is not correctly configured to log error messages. You must configure at least a text file log in horde/config/conf.php.'), __FILE__, __LINE__, false);
         }
 
-        $logger = Log::singleton($conf['log']['type'],
+        $logger = \Log::singleton($conf['log']['type'],
                                  $conf['log']['name'],
                                  $conf['log']['ident'],
                                  $conf['log']['params']);

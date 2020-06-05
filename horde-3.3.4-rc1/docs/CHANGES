@@ -2077,7 +2077,7 @@ v1.3.3
 [cjh] Add Horde::getFormData() to fetch a variable from either
       $HTTP_POST_VARS or $HTTP_GET_VARS (and to clean magic quotes, if
       necessary).
-[cjh] Remove the Log:: class. This is part of PEAR now.
+[cjh] Remove the \Log:: class. This is part of PEAR now.
 [cjh] Add a SessionCache:: class. This is intended for storing objects in
       the session intended for near-term use, and will currently start
       throwing out objects when more than 20 are put in. This will hopefully
@@ -2203,7 +2203,7 @@ v1.3.3
       log backends), and observers register the level of events they want to
       hear about, and only get notified of events as important or more
       important than that level.
-[cjh] Added a Log:: framework and syslog implementation, including a
+[cjh] Added a \Log:: framework and syslog implementation, including a
       Log_observer class intended to sit on top of Lob objects and take
       action in exceptional circumstances.
 [cjh] Make sure to always send a charset with emails.

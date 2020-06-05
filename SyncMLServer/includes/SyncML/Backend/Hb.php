@@ -353,7 +353,7 @@ class SyncML_Backend_Hb extends SyncML_Backend {
 				//we do not know any davice info right now. Device will send it in the next packet.
             	$credentials = Ab_SyncML_Api::start_session($username, $password, $this->_syncDeviceID, ''); //Do not pass device-tag name - lets autoassign
 	    	} catch (Exception $e){
-	    	    Log::debug("Error: ".var_export($e->getMessage(),1),'syncml_api');
+	    	    \Log::debug("Error: ".var_export($e->getMessage(),1),'syncml_api');
 	    		return false;
 	    	}
             	

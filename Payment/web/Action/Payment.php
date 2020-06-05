@@ -18,7 +18,7 @@ class Action_Payment extends Action_Reg
             if (!$_SERVER['HTTP_HTTPS']) { //if not on secured server - redirect
                 $cook="/*".$_COOKIE["uid"];
                 $url="https://".$_SERVER['HTTP_HOST'].$cook.$_SERVER['HTTP_X_URI'];
-                go($url);
+                go($url, 302);
             }
 	    }
 
@@ -50,7 +50,7 @@ class Action_Payment extends Action_Reg
 			if (Acxiom::report_price() <= Me()->Fin->balance  ) {
 				Me()->Session->report_pid = NULL;
 				Me()->Session->do_purchase = $report_pid;
-				go('/P/?id='.$report_pid);
+				go('/P/?id='.$report_pid, 302);
 			}
 		}
 
@@ -59,7 +59,7 @@ class Action_Payment extends Action_Reg
 				if (Me()->Fin->balance >= 3) {//$3 is a minimum balance after adding funds
 					Me()->Session->webcall = NULL;
 					Me()->Session->do_webcall = $webcall;
-					go('/P/?id='.$webcall['webcall_pid']);
+					go('/P/?id='.$webcall['webcall_pid'], 302);
 				}
 			}
 		}

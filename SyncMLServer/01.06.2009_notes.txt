@@ -20,5 +20,5 @@ Funambol forge: https://www.forge.funambol.org/servlets/ProjectList?type=Project
 Errors:
 fopen(/hb/web/www/sync/tmp//log.txt): failed to open stream: Permission denied
 Failed opening 'Ab/SyncML.php' for inclusion (include_path='/hb/web/www/sync/includes:/hb/lib.framework:/hb/lib:/hb/web/include')  /hb/lib.framework/utils/autoload.php
-Fatal error: Call to undefined method Log::error() in /hb/lib.framework/utils/error.php on line 10
+Fatal error: Call to undefined method \Log::error() in /hb/lib.framework/utils/error.php on line 10
 Undefined offset:  2  /hb/lib/O/Ab/SyncML/Api.php  21 (when login/password incorrect)
