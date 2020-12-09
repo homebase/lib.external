@@ -63,3 +63,31 @@ How to install gulp to fresh system:
     cd /rd/lib.external
     npm install --save-dev gulp
     npm audit fix
+How to use gulp
+===============
+
+Assume we use same modules for all our sub-projects
+Approach:
+- If you have no installed Gulp on your development system - install gulp globally
+# sudo apt install nodejs
+# sudo apt install npm
+# sudo npm install --global gulp node-sass gulp-sass gulp-autoprefixer gulp-sourcemaps gulp-rigger gulp-uglify gulp-concat
+
+
+
+- Now let's init sub-project structure. As example I'll use radaris.com folder ( /rd/rd/ )
+# cd /rd/rd/
+if you do not see folder /rd/rd/node_modules/ you should link it to your global gulp modules
+# sudo npm link gulp node-sass gulp-sass gulp-autoprefixer gulp-sourcemaps gulp-rigger gulp-uglify gulp-concat
+folder /rd/rd/node_modules/ should appear with link to your global node_modules location. 
+Note: this folder is ignored by Git
+Now you test your environment
+# gulp test
+
+Troubleshooting:
+1. allow your local user to access global node modules (optional)
+# sudo chown -R <YOUR_LOCAL_USER_NAME> /usr/local/lib/node_modules/
+2. If you still have "permission denied" error try to re-install node-sass with ignoring permissions issues
+# sudo npm install --unsafe-perm -g node-sass
+3. Rebuild node-sasss
+# sudo npm -g rebuild node-sass
