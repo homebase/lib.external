@@ -8,8 +8,8 @@ let SlackWrapper = class {
     }
 
     constructor(options) {
-        var ahth_token = options.token ?? this.config.token;
-        this.web = new WebClient(ahth_token);
+        var auth_token = options.token ?? this.config.token;
+        this.web = new WebClient(auth_token);
     }
 
     sendMessage(msg, channel) {
