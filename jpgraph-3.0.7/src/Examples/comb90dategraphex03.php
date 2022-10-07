@@ -139,7 +139,7 @@ $mgraph->SetFillColor(BKG_COLOR);
 $mgraph->Add($graph,0,50);
 $mgraph->Add($graph2,250,50);
 $mgraph->Add($graph3,460,50);
-$mgraph->title->Set('Climate diagram 12 March 2009');
+$mgraph->title->Set('climate diagram 12 March 2009');
 $mgraph->title->SetFont(FF_ARIAL,FS_BOLD,20);
 $mgraph->title->SetMargin(8);
 $mgraph->Stroke();
