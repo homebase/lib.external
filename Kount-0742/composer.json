@@ -1,0 +1,34 @@
+{
+  "name": "kount/kount-ris-php-sdk",
+  "description": "PHP client for Kount Risk Inquiry Service.",
+  "keywords": ["test", "payments", "sdk"],
+  "homepage": "https://github.com/Kount/kount-ris-php-sdk",
+  "type" : "library",
+  "license": "proprietary",
+  "authors": [{
+    "name": "Kount",
+    "email": "support@kount.com"
+  }],
+  "require": {
+    "php": ">=7.2.5",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "ext-xml": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5.3",
+    "phpunit/php-code-coverage": "^9.2.3",
+    "phpdocumentor/phpdocumentor": ">=2.0"
+  },
+  "autoload": {
+    "classmap": [
+      "./src/"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "symfony/flex": true
+    }
+  }
+}

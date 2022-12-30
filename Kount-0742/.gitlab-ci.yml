@@ -1,0 +1,86 @@
+include:
+  - project: kount/third_party/tpa-ci-shared
+    file:
+      - core/rules.yml
+      - version.yml
+      - base/sq-scan.yml
+    ref: 2.7.1
+
+stages:
+  - version
+  - version check
+  - build
+  - test
+  - sonarqube scan
+
+.php:
+  image: roadiz/php73-runner
+  before_script:
+    # install dependencies
+    - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+    - bash docker_install.sh
+    - apt-get update
+    - apt-get install zip unzip -y
+    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    - php composer-setup.php
+    - php -r "unlink('composer-setup.php');"
+    - php composer.phar install
+  
+version check:
+  stage: version check
+  rules:
+    # on master, allow failure
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      allow_failure: true
+    # on mr, allow failure
+    - if: '$CI_MERGE_REQUEST_ID != null || $CI_PIPELINE_SOURCE == "merge_request_event"'
+      allow_failure: true
+    - !reference [.rule-on-tag]
+  script:
+    - BUILD_VERSION=`echo $BUILD_VERSION | cut -c-20`
+    - SDK_VERSION="Sdk-Ris-PHP-"${BUILD_VERSION}
+    - |
+      if ! grep -q SDK_VERSION=\"${SDK_VERSION}\" src/settings.ini
+      then
+        echo "'SDK_VERSION=\"${SDK_VERSION}\"' not found in src/settings.ini"
+        exit 1
+      fi
+
+build:
+  stage: build
+  extends: .php
+  rules:
+    - !reference [.rule-on-tag]
+    - !reference [.rule-on-master]
+    - !reference [.rule-on-mr]
+  script:
+    - composer install
+  
+test:
+  stage: test
+  extends: .php
+  rules:
+  - !reference [.rule-on-tag]
+  - !reference [.rule-on-master]
+  - !reference [.rule-on-mr]
+  before_script:
+    - pecl install xdebug-3.1.6
+    - docker-php-ext-enable xdebug 
+    - echo xdebug.mode=coverage > /usr/local/etc/php/conf.d/xdebug.ini
+  script:
+    - composer install
+    - vendor/bin/phpunit --configuration phpunit.integration.xml --coverage-clover=phpunit-coverage-result.xml --log-junit=phpunit-execution-result.xml
+  artifacts:
+    paths:
+      - ${CI_PROJECT_DIR}/phpunit-coverage-result.xml
+      - ${CI_PROJECT_DIR}/phpunit-execution-result.xml
+
+sonarqube scan:
+  extends: .sq-scan
+  stage: sonarqube scan
+  variables:
+    SRC_EXCLUSIONS: "**/.git/**,**/build/**,**/vendor/**,**/tests/**,**/docs/**,**/phpdocs/**,**/DS_Store/**,**/idea/**,**/*LICENSE,**/*.cache,**/*.lock,**/*.phar,**/*.gitignore,**/*.yml"
+    PHP_TEST_COVERAGE_REPORT_PATHS: "${CI_PROJECT_DIR}/phpunit-coverage-result.xml"
+    PHP_TEST_EXECUTION_REPORT_PATHS: "${CI_PROJECT_DIR}/phpunit-execution-result.xml"
+
+
