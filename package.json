@@ -1,63 +1,33 @@
 {
   "name": "lib.external",
-  "version": "1.0.0",
-  "description": "lib.external ============",
+  "version": "2.0.0",
+  "description": "lib external HB js",
   "main": "index.js",
-  "dependencies": {
-    "bootstrap": "^4.4.1",
-    "gulp-include": "^2.4.1",
-    "gulp-install": "^0.6.0",
-    "gulp-rigger": "^0.5.8",
-    "gulp-sass": "^3.1.0",
-    "imagemin-pngquant": "^8.0.0"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "gulp": "./node_modules/.bin/gulp"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/homebase/lib.external.git"
   },
-  "author": "",
+  "keywords": [
+    "HB",
+    "lib.external",
+    "js"
+  ],
+  "author": "Linas Elksnis",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/homebase/lib.external/issues"
   },
   "homepage": "https://github.com/homebase/lib.external#readme",
-  "devDependencies": {
-    "babel": "^6.23.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-2": "^6.18.0",
-    "babel-preset-stage-3": "^6.17.0",
-    "babelify": "^7.3.0",
-    "babili": "^0.1.4",
-    "browserify": "^14.5.0",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^3.1.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-concat": "^2.6.0",
-    "gulp-es6-transpiler": "^1.0.1",
-    "gulp-imagemin": "^7.1.0",
-    "gulp-load-plugins": "^2.0.2",
-    "gulp-minify": "0.0.14",
-    "gulp-notify": "^3.2.0",
-    "gulp-plumber": "^1.2.1",
-    "gulp-postcss": "^6.2.0",
-    "gulp-sass-error": "^1.0.2",
-    "gulp-sass-glob": "^1.0.6",
-    "gulp-sourcemaps": "^2.6.1",
-    "gulp-uglify": "^2.1.2",
-    "gulp-uglifyjs": "^0.6.2",
-    "gulp-util": "^3.0.8",
-    "gulp-watch": "^5.0.1",
-    "node-sass": "^4.13.1",
-    "postcss-flexbugs-fixes": "^2.0.0",
-    "reactify": "^1.1.1",
-    "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.11.1"
+  "dependencies": {
+    "@kount/kount-web-client-sdk": "^1.1.6",
+    "bootstrap": "^4.4.1",
+    "gulp-include": "^2.4.1",
+    "gulp-install": "^1.1.0",
+    "gulp-rigger": "^0.5.8",
+    "gulp-sass": "^5.1.0",
+    "imagemin-pngquant": "^9.0.2"
   }
 }
