@@ -132,6 +132,73 @@ if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
                 "admin" => "admin", // Administrator's USERNAME => PASSWORD
             ),
         ),
+        array(
+            "mongo_name" => "t-mdb",
+            "mongo_host" => "t-mdb",
+            "mongo_port" => "27017",
+            "mongo_timeout" => 0,
+            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
+            "control_auth" => false,//enable control users, works only if mongo_auth=false
+            "control_users" => array(
+                "admin" => "admin", // Administrator's USERNAME => PASSWORD
+            ),
+        ),
+        array(
+            "mongo_name" => "t-mdb-b",
+            "mongo_host" => "t-mdb-b",
+            "mongo_port" => "27017",
+            "mongo_timeout" => 0,
+            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
+            "control_auth" => false,//enable control users, works only if mongo_auth=false
+            "control_users" => array(
+                "admin" => "admin", // Administrator's USERNAME => PASSWORD
+            ),
+        ),
+        array(
+            "mongo_name" => "t-mdb-a",
+            "mongo_host" => "t-mdb-a",
+            "mongo_port" => "27017",
+            "mongo_timeout" => 0,
+            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
+            "control_auth" => false,//enable control users, works only if mongo_auth=false
+            "control_users" => array(
+                "admin" => "admin", // Administrator's USERNAME => PASSWORD
+            ),
+        ),
+        array(
+            "mongo_name" => "t-user",
+            "mongo_host" => "t-user",
+            "mongo_port" => "27017",
+            "mongo_timeout" => 0,
+            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
+            "control_auth" => false,//enable control users, works only if mongo_auth=false
+            "control_users" => array(
+                "admin" => "admin", // Administrator's USERNAME => PASSWORD
+            ),
+        ),
+        array(
+            "mongo_name" => "t-user-b",
+            "mongo_host" => "t-user-b",
+            "mongo_port" => "27017",
+            "mongo_timeout" => 0,
+            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
+            "control_auth" => false,//enable control users, works only if mongo_auth=false
+            "control_users" => array(
+                "admin" => "admin", // Administrator's USERNAME => PASSWORD
+            ),
+        ),
+        array(
+            "mongo_name" => "t-user-a",
+            "mongo_host" => "t-user-a",
+            "mongo_port" => "27017",
+            "mongo_timeout" => 0,
+            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
+            "control_auth" => false,//enable control users, works only if mongo_auth=false
+            "control_users" => array(
+                "admin" => "admin", // Administrator's USERNAME => PASSWORD
+            ),
+        ),
+
 /*
         array(
             "mongo_name" => "mnews2",
