@@ -166,8 +166,8 @@ if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
             ),
         ),
         array(
-            "mongo_name" => "t-user",
-            "mongo_host" => "t-user",
+            "mongo_name" => "t-user-mdb",
+            "mongo_host" => "t-user-mdb",
             "mongo_port" => "27017",
             "mongo_timeout" => 0,
             "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
@@ -177,8 +177,8 @@ if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
             ),
         ),
         array(
-            "mongo_name" => "t-user-b",
-            "mongo_host" => "t-user-b",
+            "mongo_name" => "t-user-mdb-b",
+            "mongo_host" => "t-user-mdb-b",
             "mongo_port" => "27017",
             "mongo_timeout" => 0,
             "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
@@ -188,8 +188,8 @@ if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
             ),
         ),
         array(
-            "mongo_name" => "t-user-a",
-            "mongo_host" => "t-user-a",
+            "mongo_name" => "t-user-mdb-a",
+            "mongo_host" => "t-user-mdb-a",
             "mongo_port" => "27017",
             "mongo_timeout" => 0,
             "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
