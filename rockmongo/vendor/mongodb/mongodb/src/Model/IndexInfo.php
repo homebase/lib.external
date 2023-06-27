@@ -62,7 +62,7 @@ class IndexInfo implements ArrayAccess
      */
     public function getName()
     {
-        return (string) $this->info['name'];
+        return (string) ($this->info['name']??'');
     }
 
     /**
@@ -72,7 +72,7 @@ class IndexInfo implements ArrayAccess
      */
     public function getNamespace()
     {
-        return (string) $this->info['ns'];
+        return (string) ($this->info['ns']??'');
     }
 
     /**
@@ -82,7 +82,7 @@ class IndexInfo implements ArrayAccess
      */
     public function getVersion()
     {
-        return (integer) $this->info['v'];
+        return (integer) ($this->info['v']??0);
     }
 
     /**

@@ -22,7 +22,7 @@ if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
     // Production version
     $MONGO["servers"] = array(
         // New COLO mongo server
-        array(
+        /*array(
             "mongo_name" => "d-mdb",
             "mongo_host" => "d-mdb",
             "mongo_port" => "27017",
@@ -32,7 +32,7 @@ if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
             "control_users" => array(
                 "admin" => "admin", // Administrator's USERNAME => PASSWORD
             ),
-        ),
+        ),*/
         array(
             "mongo_name" => "mdb2",
             "mongo_host" => "mdb2", // Replace your MongoDB host ip or domain name here
@@ -89,8 +89,8 @@ if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
             ),
         ),
         array(
-            "mongo_name" => "d-user2",
-            "mongo_host" => "d-user2",
+            "mongo_name" => "r-user",
+            "mongo_host" => "r-user",
             "mongo_port" => "27017",
             "mongo_timeout" => 0,
             "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
@@ -100,8 +100,8 @@ if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
             ),
         ),
         array(
-            "mongo_name" => "d-user-s",
-            "mongo_host" => "d-user-s",
+            "mongo_name" => "r-user-a",
+            "mongo_host" => "r-user-a",
             "mongo_port" => "27017",
             "mongo_timeout" => 0,
             "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
@@ -111,8 +111,8 @@ if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
             ),
         ),
         array(
-            "mongo_name" => "d-user-a",
-            "mongo_host" => "d-user-a",
+            "mongo_name" => "t-user-mdb",
+            "mongo_host" => "t-user-mdb",
             "mongo_port" => "27017",
             "mongo_timeout" => 0,
             "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
@@ -144,8 +144,8 @@ if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
             ),
         ),
         array(
-            "mongo_name" => "t-mdb-b",
-            "mongo_host" => "t-mdb-b",
+            "mongo_name" => "r-mdb",
+            "mongo_host" => "r-mdb",
             "mongo_port" => "27017",
             "mongo_timeout" => 0,
             "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
@@ -168,28 +168,6 @@ if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
         array(
             "mongo_name" => "t-user-mdb",
             "mongo_host" => "t-user-mdb",
-            "mongo_port" => "27017",
-            "mongo_timeout" => 0,
-            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
-            "control_auth" => false,//enable control users, works only if mongo_auth=false
-            "control_users" => array(
-                "admin" => "admin", // Administrator's USERNAME => PASSWORD
-            ),
-        ),
-        array(
-            "mongo_name" => "t-user-mdb-b",
-            "mongo_host" => "t-user-mdb-b",
-            "mongo_port" => "27017",
-            "mongo_timeout" => 0,
-            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
-            "control_auth" => false,//enable control users, works only if mongo_auth=false
-            "control_users" => array(
-                "admin" => "admin", // Administrator's USERNAME => PASSWORD
-            ),
-        ),
-        array(
-            "mongo_name" => "t-user-mdb-a",
-            "mongo_host" => "t-user-mdb-a",
             "mongo_port" => "27017",
             "mongo_timeout" => 0,
             "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
