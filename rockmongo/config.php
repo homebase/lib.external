@@ -155,8 +155,8 @@ if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
             ),
         ),
         array(
-            "mongo_name" => "t-mdb-a",
-            "mongo_host" => "t-mdb-a",
+            "mongo_name" => "r-mdb-a",
+            "mongo_host" => "r-mdb-a",
             "mongo_port" => "27017",
             "mongo_timeout" => 0,
             "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
@@ -165,18 +165,6 @@ if (1/*$_SERVER["HTTP_HOST"] != "admin.rd.dev"*/) {
                 "admin" => "admin", // Administrator's USERNAME => PASSWORD
             ),
         ),
-        array(
-            "mongo_name" => "t-user-mdb",
-            "mongo_host" => "t-user-mdb",
-            "mongo_port" => "27017",
-            "mongo_timeout" => 0,
-            "mongo_auth" => false,//Enable authentication, set to "false" to disable authentication
-            "control_auth" => false,//enable control users, works only if mongo_auth=false
-            "control_users" => array(
-                "admin" => "admin", // Administrator's USERNAME => PASSWORD
-            ),
-        ),
-
 /*
         array(
             "mongo_name" => "mnews2",
